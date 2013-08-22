@@ -18,8 +18,9 @@ def application(environ, start_response):
 		
 			ctype = 'text/json'
 			response_body = configuredToJSON(replay)
-		except Exception as inst:
-			response_body = inst
+		except:
+			e = sys.exc_info()[0]
+			response_body = "Error: %s" % e
 
 	status = '200 OK'
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
