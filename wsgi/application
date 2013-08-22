@@ -14,13 +14,13 @@ def application(environ, start_response):
 	else:
 		try:
 			form = cgi.FieldStorage()
-			if 'datei' in form:
-				fileitem = form['datei']
-				fn = os.path.basename(fileitem.filename) 
-				#open('uploads/' + fn, 'wb').write(fileitem.file.read())
-				replayfile = fileitem.file
-			else:
-				replayfile = '1.SC2Replay'
+			#if 'datei' in form:
+			fileitem = form['datei']
+			fn = os.path.basename(fileitem.filename) 
+			#open('uploads/' + fn, 'wb').write(fileitem.file.read())
+			replayfile = fileitem.file
+			#else:
+			#	replayfile = '1.SC2Replay'
 		
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
