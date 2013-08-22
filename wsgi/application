@@ -15,7 +15,7 @@ def application(environ, start_response):
 		try:
 			form = cgi.FieldStorage()
 			response_body = ['%s: %s' % (key, value)
-                    for key, value in sorted(form)]
+                    for key, value in sorted(environ.items())]
 			response_body = '\n'.join(response_body)
 			#if form.has_key('datei'):
 			#	fileitem = form['datei']
