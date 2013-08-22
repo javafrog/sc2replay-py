@@ -24,7 +24,7 @@ def application(environ, start_response):
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
 			configuredToJSON = toJSON(indent=2)
-			replay = sc2reader.load_replay(replayfile)
+			replay = sc2reader.load_replay("1.SC2Replay")
 		
 			ctype = 'text/json'
 			response_body = configuredToJSON(replay)
