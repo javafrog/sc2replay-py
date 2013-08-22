@@ -13,8 +13,8 @@ def application(environ, start_response):
 		response_body = '\n'.join(response_body)
 	else:
 		try:
-			fileitem = cgi.FieldStorage('datei')
-            fn = os.path.basename(fileitem.filename) 
+			#fileitem = cgi.FieldStorage('datei')
+            #fn = os.path.basename(fileitem.filename) 
            # open('uploads/' + fn, 'wb').write(fileitem.file.read())
 		
 			import sc2reader
