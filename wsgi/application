@@ -11,12 +11,12 @@ def application(environ, start_response):
 		response_body = '\n'.join(response_body)
 	else:
 		import sc2reader
-		#from sc2reader.scripts.sc2json import toJSON
-		#configuredToJSON = toJSON(indent=2)
-		#replay = sc2reader.load_replay('1.sc2replay')
+		from sc2reader.scripts.sc2json import toJSON
+		configuredToJSON = toJSON(indent=2)
+		replay = sc2reader.load_replay('1.sc2replay')
 		
 		ctype = 'text/json'
-		response_body = '''huhu'''#configuredToJSON(replay)
+		response_body = configuredToJSON(replay)
 
 	status = '200 OK'
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
