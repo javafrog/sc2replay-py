@@ -15,12 +15,12 @@ def application(environ, start_response):
 		try:
 			fileitem = cgi.FieldStorage('datei')
             fn = os.path.basename(fileitem.filename) 
-            open('uploads/' + fn, 'wb').write(fileitem.file.read())
+           # open('uploads/' + fn, 'wb').write(fileitem.file.read())
 		
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
 			configuredToJSON = toJSON(indent=2)
-			replay = sc2reader.load_replay('1.SC2Replay')
+			replay = sc2reader.load_replay(fileitem.file.read())
 		
 			ctype = 'text/json'
 			response_body = configuredToJSON(replay)
