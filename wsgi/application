@@ -15,10 +15,10 @@ def application(environ, start_response):
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
 			configuredToJSON = toJSON(indent=2)
-			#replay = sc2reader.load_replay('1.SC2Replay')
+			replay = sc2reader.load_replay('1.SC2Replay')
 		
 			ctype = 'text/json'
-			response_body = "hoho"#configuredToJSON(replay)
+			response_body = configuredToJSON(replay)
 		except:
 			e = sys.exc_info()[0]
 			response_body = "Error: %s" % e
