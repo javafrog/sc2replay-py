@@ -7,21 +7,19 @@ def application(environ, start_response):
 	ctype = 'text/plain'
 	if environ['PATH_INFO'] == '/health':
 		response_body = "1"
+		status = '200 OK'
 	elif environ['PATH_INFO'] == '/env':
 		response_body = ['%s: %s' % (key, value)
                     for key, value in sorted(environ.items())]
-		response_body = '\n'.join(response_body)
+		response_body = '\n'.join(response_body)		
+		status = '200 OK'
 	else:
 		try:
 			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
 
-			#if form.has_key('datei'):
 			fileitem = form['datei']
-			fn = os.path.basename(fileitem.filename) 
-				#open('uploads/' + fn, 'wb').write(fileitem.file.read())
+			fn = os.path.basename(fileitem.filename)
 			replayfile = fileitem.file
-			#else:
-			#replayfile = '1.SC2Replay'
 		
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
@@ -30,11 +28,12 @@ def application(environ, start_response):
 		
 			ctype = 'text/json'
 			response_body = configuredToJSON(replay)
+			status = '200 OK'
 		except:
 			e = sys.exc_info()[0]
-			response_body = "Error: %s" % e
+			response_body = "Error: %s" % e			
+			status = '500 Internal Server Error'
 
-	status = '200 OK'
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
 	#
 	start_response(status, response_headers)
