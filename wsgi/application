@@ -19,7 +19,7 @@ def application(environ, start_response):
 			#	# open('uploads/' + fn, 'wb').write(fileitem.file.read())
 			#	#fileitem.file.read())
 			#else:
-				replayfile = "1.SC2Replay"
+			#	replayfile = "1.SC2Replay"
 		
 			import sc2reader
 			from sc2reader.scripts.sc2json import toJSON
