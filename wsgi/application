@@ -13,7 +13,7 @@ def application(environ, start_response):
 		response_body = '\n'.join(response_body)
 	else:
 		try:
-			fileitem = cgi.FieldStorage()
+			#fileitem = cgi.FieldStorage()
 			#if 'datei' in form:
 			#	#fn = os.path.basename(fileitem.filename) 
 			#	# open('uploads/' + fn, 'wb').write(fileitem.file.read())
