@@ -19,9 +19,9 @@ def application(environ, start_response):
 			#response_body = '\n'.join(response_body)
 			if form.has_key('datei'):
 				fileitem = form['datei']
-				fn = os.path.basename(fileitem.filename) 
+				#fn = os.path.basename(fileitem.filename) 
 				#open('uploads/' + fn, 'wb').write(fileitem.file.read())
-				replayfile = fileitem.file
+				#replayfile = fileitem.file
 			else:
 				replayfile = '1.SC2Replay'
 		
