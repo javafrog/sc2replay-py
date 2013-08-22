@@ -18,8 +18,8 @@ def application(environ, start_response):
 		
 			ctype = 'text/json'
 			response_body = configuredToJSON(replay)
-		except:
-			response_body = 'ochnoe'
+		except Exception as inst:
+			response_body = inst
 
 	status = '200 OK'
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
