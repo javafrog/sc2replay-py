@@ -13,10 +13,10 @@ def application(environ, start_response):
 		response_body = '\n'.join(response_body)
 	else:
 		try:
-			fileitem = cgi.FieldStorage()
+			fileitem = cgi.FieldStorage()['datei']
 			if 'datei' in form:
 				fn = os.path.basename(fileitem.filename) 
-				open('uploads/' + fn, 'wb').write(fileitem.datei.read())
+				open('uploads/' + fn, 'wb').write(fileitem.file.read())
 			else:
 				replayfile = '1.SC2Replay'
 		
