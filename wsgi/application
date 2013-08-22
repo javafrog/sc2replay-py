@@ -13,7 +13,7 @@ def application(environ, start_response):
 		response_body = '\n'.join(response_body)
 	else:
 		try:
-			form = cgi.FieldStorage()
+			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
 			response_body = ['%s: %s' % (key, value)
                     for key, value in sorted(environ.items())]
 			response_body = '\n'.join(response_body)
