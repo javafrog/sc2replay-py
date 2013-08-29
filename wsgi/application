@@ -17,25 +17,30 @@ def application(environ, start_response):
 		try:
 			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
 
-			fileitem = form['datei']
-			fn = os.path.basename(fileitem.filename)
-			replayfile = fileitem.file
-			
-			import sc2reader
-			from sc2reader.scripts.sc2json import toJSON
-			configuredToJSON = toJSON(indent=2)
-			replay = sc2reader.load_replay(replayfile)
-			
-			ctype = 'text/json'
-			response_body = configuredToJSON(replay)
-			status = '200 OK'
 		except KeyError:
-			response_body = "File not provided"			
+			response_body = "Black hole created."			
 			status = '500 Internal Server Error'
 		except:
-			e = sys.exc_info()[0]
-			response_body = "Error: %s" % e			
-			status = '500 Internal Server Error'
+			try:
+				fileitem = form['datei']
+				fn = os.path.basename(fileitem.filename)
+				replayfile = fileitem.file
+				
+				import sc2reader
+				from sc2reader.scripts.sc2json import toJSON
+				configuredToJSON = toJSON(indent=2)
+				replay = sc2reader.load_replay(replayfile)
+				
+				ctype = 'text/json'
+				response_body = configuredToJSON(replay)
+				status = '200 OK'
+			except KeyError:
+				response_body = "File not provided"			
+				status = '500 Internal Server Error'
+			except:
+				e = sys.exc_info()[0]
+				response_body = "Error: %s" % e			
+				status = '500 Internal Server Error'
 
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
 	#
