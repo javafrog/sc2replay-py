@@ -20,7 +20,7 @@ def application(environ, start_response):
 			if (!('datei' in form)):			
 				response_body = No file given.
 				status = '500 Internal Server Error'
-			else
+			else:
 				fileitem = form['datei']
 				fn = os.path.basename(fileitem.filename)
 				replayfile = fileitem.file
