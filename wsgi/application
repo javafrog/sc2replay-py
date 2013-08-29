@@ -16,6 +16,9 @@ def application(environ, start_response):
 	else:
 		try:
 			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
+			
+			for i in form:
+				print(i)
 
 		except:
 			response_body = "Black hole created."			
