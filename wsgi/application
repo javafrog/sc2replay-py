@@ -17,18 +17,22 @@ def application(environ, start_response):
 		try:
 			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
 
-			fileitem = form['datei']
-			fn = os.path.basename(fileitem.filename)
-			replayfile = fileitem.file
-		
-			import sc2reader
-			from sc2reader.scripts.sc2json import toJSON
-			configuredToJSON = toJSON(indent=2)
-			replay = sc2reader.load_replay(replayfile)
-		
-			ctype = 'text/json'
-			response_body = configuredToJSON(replay)
-			status = '200 OK'
+			if (!('datei' in form)):			
+				response_body = No file given.
+				status = '500 Internal Server Error'
+			else
+				fileitem = form['datei']
+				fn = os.path.basename(fileitem.filename)
+				replayfile = fileitem.file
+			
+				import sc2reader
+				from sc2reader.scripts.sc2json import toJSON
+				configuredToJSON = toJSON(indent=2)
+				replay = sc2reader.load_replay(replayfile)
+			
+				ctype = 'text/json'
+				response_body = configuredToJSON(replay)
+				status = '200 OK'
 		except:
 			e = sys.exc_info()[0]
 			response_body = "Error: %s" % e			
