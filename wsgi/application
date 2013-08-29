@@ -16,9 +16,6 @@ def application(environ, start_response):
 	else:
 		try:
 			form = cgi.FieldStorage( fp=environ['wsgi.input'],environ=environ,keep_blank_values=True)
-			
-			for i in form:
-				print(i)
 
 		except:
 			response_body = "Black hole created."			
@@ -45,6 +42,9 @@ def application(environ, start_response):
 			e = sys.exc_info()[0]
 			response_body = "Error: %s" % e			
 			status = '500 Internal Server Error'
+			
+		for i in form:
+			response_body += i
 
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
 	#
