@@ -36,18 +36,19 @@ def application(environ, start_response):
 			response_body = configuredToJSON(replay)
 			status = '200 OK'
 		except KeyError:
-			response_body = "File not provided"			
+			response_body = "No replay file provided!"			
 			status = '500 Internal Server Error'
 		except:
 			e = sys.exc_info()[0]
 			response_body = "Error: %s" % e			
 			status = '500 Internal Server Error'
 			
-		for i in form:
-			response_body += '!'
-			response_body += i
+		try:
+			for i in form:
+				response_body += i
+		except:
+			response_body += "can't put elements here"
 			
-
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
 
 	start_response(status, response_headers)
