@@ -44,7 +44,7 @@ def application(environ, start_response):
 			status = '500 Internal Server Error'
 			
 		for i in form:
-			response_body += i
+			response_body += i+"!"
 
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
 	#
