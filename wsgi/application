@@ -20,6 +20,11 @@ def application(environ, start_response):
 		except:
 			response_body = "Black hole created."			
 			status = '500 Internal Server Error'
+			
+			response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
+
+			start_response(status, response_headers)
+			return [response_body.encode('utf-8') ]
 		
 		
 		try:
