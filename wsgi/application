@@ -53,8 +53,7 @@ def application(environ, start_response):
 			response_body = "No replay file provided!"			
 			status = '500 Internal Server Error'
 		except Exception as e:
-			response_body = "Error (%s): " % e	
-			response_body += "%s" % str(e)			
+			response_body = "Error %s: " % e	
 			status = '500 Internal Server Error'
 			
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
@@ -116,7 +115,7 @@ def toDict(replay):
             'name': getattr(player, 'name', None),
             'pick_race': getattr(player, 'pick_race', None),
             'pid': getattr(player, 'pid', None),
-            'team': getattr(player, 'team', None),
+            'team': getattr(getattr(player, 'team', None),'number', None),
             'play_race': getattr(player, 'play_race', None),
             'result': getattr(player, 'result', None),
             'type': getattr(player, 'type', None),
