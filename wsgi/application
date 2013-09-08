@@ -45,7 +45,7 @@ def application(environ, start_response):
 			status = '500 Internal Server Error'
 		except:
 			e = sys.exc_info()[0]
-			response_body = "Error: %s" % e			
+			response_body = "Error: %s" % str(e)			
 			status = '500 Internal Server Error'
 			
 	response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
