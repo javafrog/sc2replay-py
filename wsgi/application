@@ -3,6 +3,7 @@
 from __future__ import absolute_import, print_function, unicode_literals, division
 
 import json
+import base64
 from collections import defaultdict
 
 from sc2reader import log_utils
@@ -131,7 +132,7 @@ def toDict(replay):
         'gateway': getattr(replay, 'gateway', None),
         'map_name': getattr(replay, 'map_name', None),
         'map_hash': getattr(replay, 'map_hash', None),
-        'map_img': getattr(getattr(replay, 'map', None),'minimap', None),
+        'map_img': base64.b64encode(getattr(getattr(replay, 'map', None),'minimap', None)),
         'file_time': getattr(replay, 'file_time', None),
         'filehash': getattr(replay, 'filehash', None),
         'unix_timestamp': getattr(replay, 'unix_timestamp', None),
