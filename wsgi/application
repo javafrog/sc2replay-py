@@ -130,6 +130,7 @@ def toDict(replay):
     return {
         'gateway': getattr(replay, 'gateway', None),
         'map_name': getattr(replay, 'map_name', None),
+        'map_hash': getattr(replay, 'map_hash', None),
         'file_time': getattr(replay, 'file_time', None),
         'filehash': getattr(replay, 'filehash', None),
         'unix_timestamp': getattr(replay, 'unix_timestamp', None),
