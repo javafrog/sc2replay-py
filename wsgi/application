@@ -43,7 +43,7 @@ def application(environ, start_response):
 		except KeyError:
 			response_body = "No replay file provided!"			
 			status = '500 Internal Server Error'
-		except Exception, e:
+		except Exception as e:
 			response_body = "Error: %s" % str(e)			
 			status = '500 Internal Server Error'
 			
