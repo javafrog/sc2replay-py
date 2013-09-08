@@ -116,6 +116,7 @@ def toDict(replay):
             'pick_race': getattr(player, 'pick_race', None),
             'pid': getattr(player, 'pid', None),
             'team': getattr(player, 'team_id', None),
+            'difficulty': getattr(player, 'difficulty', None),
             'isComp': not getattr(player, 'is_human', None),
             'play_race': getattr(player, 'play_race', None),
             'result': getattr(player, 'result', None),
