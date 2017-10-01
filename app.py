@@ -3,7 +3,7 @@ import imp
 import os
 
 try:
-   zvirtenv = os.path.join(os.environ['OPENSHIFT_PYTHON_DIR'],
+   zvirtenv = os.path.join(#os.environ['OPENSHIFT_PYTHON_DIR'],
                            'virtenv', 'bin', 'activate_this.py')
    exec(compile(open(zvirtenv).read(), zvirtenv, 'exec'),
         dict(__file__ = zvirtenv) )
